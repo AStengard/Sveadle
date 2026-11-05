@@ -181,7 +181,7 @@ def render_autocomplete_input(placeholder_text="Skriv en stad (använd ⬇️/�
 if len(guesses) == 0:
     st.markdown("""
     <div class="hero-box">
-        <div class="hero-title">🇸🇪 Sveadle</div>
+        <div class="hero-title">Sveadle</div>
         <div class="hero-sub">Gissningsspelet för svenska städer</div>
         <div class="hero-author"> Skapat av Alfred Stengard</div>
     </div>
