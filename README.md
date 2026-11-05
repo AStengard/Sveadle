@@ -3,11 +3,7 @@
 
 Ett webbaserat gissningsspel för svenska städer byggt i Python och Streamlit – helt utan externa API-nycklar!
 
-## Nyheter i v3
-- **Nytt namn:** Spelet heter nu **Sveadle**.
-- **Google-liknande sökfält (Autocomplete):** När du skriver i rutan dyker matchande städer upp direkt i en rullista under sökfältet (inga lösa knappar nedanför), och du kan bläddra med piltangenterna (⬇️/⬆️) samt välja med Enter.
-- **Buggfix för städer (inkl. Linköping):** `@st.cache_data` är borttaget från inläsningen av `cities.json` så att alla 30 städer (inklusive Linköping) alltid laddas in direkt även om du uppdaterar filerna på Streamlit Cloud.
-- **Sidfot på alla vyer:** Visar *"Skapat av Alfred Stengard"* längst ner på både startsidan och spelplanen.
-
-## Viktigt vid uppdatering på GitHub & Streamlit Cloud
-Se till att ladda upp **både** `app.py`, `cities.json` och `requirements.txt` (som nu innehåller `streamlit-searchbox` för piltangents-sökrutan).
+## Faktagranskad stadsdata i v4
+- **Konsekvent befolkningsstatistik (SCB Tätort):** Tidigare blandades kommunbefolkning (för Stockholm, Göteborg och Malmö) med tätortsbefolkning (för övriga städer). Nu har alla 30 städer sina exakta invånarantal för tätorten enligt SCB:s senaste tätortsmätning.
+- **Logisk Kust / Inland-indelning:** Endast städer som ligger vid havet (Östersjön, Kattegatt, Öresund, Bottniska viken) räknas nu som **Kust**. Insjöstäder (som Jönköping, Karlstad och Västerås) räknas konsekvent som **Inland**.
+- **Korrigerade årtal:** Visbys stadsprivilegier/grundande är korrigerat till år 1000.

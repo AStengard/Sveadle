@@ -200,7 +200,7 @@ if len(guesses) == 0:
                 <li>🟥 <b>Röd:</b> Fel.</li>
                 <li>⬆️ / ⬇️ <b>Pilar:</b> Visar om den hemliga staden ligger längre <b>norrut/söderut</b>, är <b>äldre/senare</b> grundad eller har <b>fler/färre</b> invånare.</li>
             </ul>
-            <p style="margin-bottom:0; font-size:0.9rem; opacity:0.85;">💡 Totalt finns <b>30 svenska städer</b> i databasen. Kust inkluderar havet samt Vänern, Vättern och Mälaren.</p>
+            <p style="margin-bottom:0; font-size:0.9rem; opacity:0.85;">💡 <b>Faktakällor:</b> Befolkning avser tätortens invånarantal enligt SCB. <b>Kust</b> avser städer vid havet (Östersjön, Kattegatt, Öresund, Bottniska viken), medan städer inne i landet (även vid insjöar som Vänern, Vättern och Mälaren) räknas som <b>Inland</b>.</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -219,7 +219,7 @@ else:
                 <b>Landskap:</b> {target['landskap']} &nbsp;|&nbsp;
                 <b>Län:</b> {target['lan']} &nbsp;|&nbsp;
                 <b>Grundad:</b> {target['grundad']} &nbsp;|&nbsp;
-                <b>Befolkning:</b> {target['befolkning']:,} invånare
+                <b>Tätortsbefolkning (SCB):</b> {target['befolkning']:,} invånare
             </div>
         </div>
         """.replace(",", " "), unsafe_allow_html=True)
@@ -244,7 +244,7 @@ else:
         arrow = up_label if t_val > g_val else down_label
         return color, arrow
 
-    headers = ["Stad", "Landskap", "Län", "Geografi (Lat)", "Kust / Inland", "Grundad", "Befolkning"]
+    headers = ["Stad", "Landskap", "Län", "Geografi (Lat)", "Kust / Inland", "Grundad", "Befolkning (Tätort)"]
     header_html = '<div class="grid-container">' + "".join(f'<div class="grid-header">{h}</div>' for h in headers) + '</div>'
     st.markdown(header_html, unsafe_allow_html=True)
 
@@ -286,9 +286,10 @@ else:
         - **Grön:** Exakt rätt!
         - **Gul:** Nära! (Delar ett av landskapen, ligger inom 1,5 breddgrader, grundades inom 100 år eller är inom 50 000 invånare).
         - **Röd:** Fel.
+        - **Kust / Inland:** Endast städer vid havskusten räknas som **Kust**. Städer vid insjöar (t.ex. Vänern, Vättern, Mälaren) räknas som **Inland**.
         - **Geografi:** ⬆️ betyder att den hemliga staden ligger **längre norrut**, ⬇️ betyder **längre söderut**.
         - **Grundad:** ⬆️ betyder att den hemliga staden grundades **senare** (högre årtal), ⬇️ betyder **äldre** (lägre årtal).
-        - **Befolkning:** ⬆️ betyder att den hemliga staden har **fler invånare**, ⬇️ betyder **färre invånare**.
+        - **Befolkning (Tätort):** Enligt SCB:s officiella tätortsstatistik. ⬆️ betyder **fler invånare**, ⬇️ betyder **färre invånare**.
         """)
         st.caption("Städer i databasen: " + ", ".join(city_names))
 

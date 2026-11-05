@@ -6,7 +6,7 @@
     "latitud": 59.33,
     "kust_inland": "Kust",
     "grundad": 1252,
-    "befolkning": 988000
+    "befolkning": 1652895
   },
   {
     "stad": "Göteborg",
@@ -15,7 +15,7 @@
     "latitud": 57.71,
     "kust_inland": "Kust",
     "grundad": 1621,
-    "befolkning": 604000
+    "befolkning": 674529
   },
   {
     "stad": "Malmö",
@@ -24,7 +24,7 @@
     "latitud": 55.6,
     "kust_inland": "Kust",
     "grundad": 1250,
-    "befolkning": 362000
+    "befolkning": 339316
   },
   {
     "stad": "Uppsala",
@@ -33,25 +33,16 @@
     "latitud": 59.86,
     "kust_inland": "Inland",
     "grundad": 1286,
-    "befolkning": 174000
+    "befolkning": 174982
   },
   {
-    "stad": "Umeå",
-    "landskap": "Västerbotten",
-    "lan": "Västerbottens län",
-    "latitud": 63.82,
-    "kust_inland": "Kust",
-    "grundad": 1622,
-    "befolkning": 94000
-  },
-  {
-    "stad": "Jönköping",
-    "landskap": "Småland",
-    "lan": "Jönköpings län",
-    "latitud": 57.78,
-    "kust_inland": "Kust",
-    "grundad": 1284,
-    "befolkning": 103000
+    "stad": "Västerås",
+    "landskap": "Västmanland",
+    "lan": "Västmanlands län",
+    "latitud": 59.61,
+    "kust_inland": "Inland",
+    "grundad": 990,
+    "befolkning": 131643
   },
   {
     "stad": "Örebro",
@@ -60,43 +51,7 @@
     "latitud": 59.27,
     "kust_inland": "Inland",
     "grundad": 1200,
-    "befolkning": 128000
-  },
-  {
-    "stad": "Kiruna",
-    "landskap": "Lappland",
-    "lan": "Norrbottens län",
-    "latitud": 67.85,
-    "kust_inland": "Inland",
-    "grundad": 1900,
-    "befolkning": 17000
-  },
-  {
-    "stad": "Visby",
-    "landskap": "Gotland",
-    "lan": "Gotlands län",
-    "latitud": 57.64,
-    "kust_inland": "Kust",
-    "grundad": 900,
-    "befolkning": 25000
-  },
-  {
-    "stad": "Karlstad",
-    "landskap": "Värmland",
-    "lan": "Värmlands län",
-    "latitud": 59.38,
-    "kust_inland": "Kust",
-    "grundad": 1584,
-    "befolkning": 69000
-  },
-  {
-    "stad": "Västerås",
-    "landskap": "Västmanland",
-    "lan": "Västmanlands län",
-    "latitud": 59.61,
-    "kust_inland": "Kust",
-    "grundad": 990,
-    "befolkning": 131000
+    "befolkning": 128658
   },
   {
     "stad": "Linköping",
@@ -105,7 +60,7 @@
     "latitud": 58.41,
     "kust_inland": "Inland",
     "grundad": 1287,
-    "befolkning": 116000
+    "befolkning": 116851
   },
   {
     "stad": "Helsingborg",
@@ -114,16 +69,16 @@
     "latitud": 56.05,
     "kust_inland": "Kust",
     "grundad": 1085,
-    "befolkning": 116000
+    "befolkning": 116029
   },
   {
-    "stad": "Norrköping",
-    "landskap": "Östergötland",
-    "lan": "Östergötlands län",
-    "latitud": 58.59,
-    "kust_inland": "Kust",
-    "grundad": 1384,
-    "befolkning": 98000
+    "stad": "Jönköping",
+    "landskap": "Småland",
+    "lan": "Jönköpings län",
+    "latitud": 57.78,
+    "kust_inland": "Inland",
+    "grundad": 1284,
+    "befolkning": 103032
   },
   {
     "stad": "Lund",
@@ -132,7 +87,25 @@
     "latitud": 55.7,
     "kust_inland": "Inland",
     "grundad": 990,
-    "befolkning": 98000
+    "befolkning": 98308
+  },
+  {
+    "stad": "Norrköping",
+    "landskap": "Östergötland",
+    "lan": "Östergötlands län",
+    "latitud": 58.59,
+    "kust_inland": "Kust",
+    "grundad": 1384,
+    "befolkning": 98229
+  },
+  {
+    "stad": "Umeå",
+    "landskap": "Västerbotten",
+    "lan": "Västerbottens län",
+    "latitud": 63.83,
+    "kust_inland": "Kust",
+    "grundad": 1622,
+    "befolkning": 94243
   },
   {
     "stad": "Gävle",
@@ -141,7 +114,7 @@
     "latitud": 60.67,
     "kust_inland": "Kust",
     "grundad": 1446,
-    "befolkning": 80000
+    "befolkning": 86533
   },
   {
     "stad": "Borås",
@@ -150,25 +123,7 @@
     "latitud": 57.72,
     "kust_inland": "Inland",
     "grundad": 1621,
-    "befolkning": 75000
-  },
-  {
-    "stad": "Eskilstuna",
-    "landskap": "Södermanland",
-    "lan": "Södermanlands län",
-    "latitud": 59.37,
-    "kust_inland": "Inland",
-    "grundad": 1659,
-    "befolkning": 71000
-  },
-  {
-    "stad": "Halmstad",
-    "landskap": "Halland",
-    "lan": "Hallands län",
-    "latitud": 56.67,
-    "kust_inland": "Kust",
-    "grundad": 1307,
-    "befolkning": 72000
+    "befolkning": 75565
   },
   {
     "stad": "Växjö",
@@ -177,7 +132,16 @@
     "latitud": 56.88,
     "kust_inland": "Inland",
     "grundad": 1342,
-    "befolkning": 74000
+    "befolkning": 74052
+  },
+  {
+    "stad": "Halmstad",
+    "landskap": "Halland",
+    "lan": "Hallands län",
+    "latitud": 56.67,
+    "kust_inland": "Kust",
+    "grundad": 1307,
+    "befolkning": 72979
   },
   {
     "stad": "Sundsvall",
@@ -186,16 +150,25 @@
     "latitud": 62.39,
     "kust_inland": "Kust",
     "grundad": 1621,
-    "befolkning": 59000
+    "befolkning": 70918
   },
   {
-    "stad": "Luleå",
-    "landskap": "Norrbotten",
-    "lan": "Norrbottens län",
-    "latitud": 65.58,
-    "kust_inland": "Kust",
-    "grundad": 1621,
-    "befolkning": 50000
+    "stad": "Eskilstuna",
+    "landskap": "Södermanland",
+    "lan": "Södermanlands län",
+    "latitud": 59.37,
+    "kust_inland": "Inland",
+    "grundad": 1659,
+    "befolkning": 70646
+  },
+  {
+    "stad": "Karlstad",
+    "landskap": "Värmland",
+    "lan": "Värmlands län",
+    "latitud": 59.38,
+    "kust_inland": "Inland",
+    "grundad": 1584,
+    "befolkning": 69615
   },
   {
     "stad": "Östersund",
@@ -204,52 +177,7 @@
     "latitud": 63.18,
     "kust_inland": "Inland",
     "grundad": 1786,
-    "befolkning": 54000
-  },
-  {
-    "stad": "Kalmar",
-    "landskap": "Småland",
-    "lan": "Kalmar län",
-    "latitud": 56.66,
-    "kust_inland": "Kust",
-    "grundad": 1100,
-    "befolkning": 43000
-  },
-  {
-    "stad": "Falun",
-    "landskap": "Dalarna",
-    "lan": "Dalarnas län",
-    "latitud": 60.61,
-    "kust_inland": "Inland",
-    "grundad": 1641,
-    "befolkning": 40000
-  },
-  {
-    "stad": "Karlskrona",
-    "landskap": "Blekinge",
-    "lan": "Blekinge län",
-    "latitud": 56.16,
-    "kust_inland": "Kust",
-    "grundad": 1680,
-    "befolkning": 37000
-  },
-  {
-    "stad": "Skellefteå",
-    "landskap": "Västerbotten",
-    "lan": "Västerbottens län",
-    "latitud": 64.75,
-    "kust_inland": "Kust",
-    "grundad": 1845,
-    "befolkning": 39000
-  },
-  {
-    "stad": "Kristianstad",
-    "landskap": "Skåne",
-    "lan": "Skåne län",
-    "latitud": 56.03,
-    "kust_inland": "Inland",
-    "grundad": 1614,
-    "befolkning": 41000
+    "befolkning": 53992
   },
   {
     "stad": "Trollhättan",
@@ -258,7 +186,43 @@
     "latitud": 58.28,
     "kust_inland": "Inland",
     "grundad": 1916,
-    "befolkning": 51000
+    "befolkning": 50069
+  },
+  {
+    "stad": "Luleå",
+    "landskap": "Norrbotten",
+    "lan": "Norrbottens län",
+    "latitud": 65.58,
+    "kust_inland": "Kust",
+    "grundad": 1621,
+    "befolkning": 49646
+  },
+  {
+    "stad": "Kalmar",
+    "landskap": "Småland",
+    "lan": "Kalmar län",
+    "latitud": 56.66,
+    "kust_inland": "Kust",
+    "grundad": 1100,
+    "befolkning": 42622
+  },
+  {
+    "stad": "Kristianstad",
+    "landskap": "Skåne",
+    "lan": "Skåne län",
+    "latitud": 56.03,
+    "kust_inland": "Inland",
+    "grundad": 1614,
+    "befolkning": 41198
+  },
+  {
+    "stad": "Falun",
+    "landskap": "Dalarna",
+    "lan": "Dalarnas län",
+    "latitud": 60.61,
+    "kust_inland": "Inland",
+    "grundad": 1641,
+    "befolkning": 39939
   },
   {
     "stad": "Nyköping",
@@ -267,6 +231,42 @@
     "latitud": 58.75,
     "kust_inland": "Kust",
     "grundad": 1187,
-    "befolkning": 39000
+    "befolkning": 39770
+  },
+  {
+    "stad": "Skellefteå",
+    "landskap": "Västerbotten",
+    "lan": "Västerbottens län",
+    "latitud": 64.75,
+    "kust_inland": "Kust",
+    "grundad": 1845,
+    "befolkning": 39146
+  },
+  {
+    "stad": "Karlskrona",
+    "landskap": "Blekinge",
+    "lan": "Blekinge län",
+    "latitud": 56.16,
+    "kust_inland": "Kust",
+    "grundad": 1680,
+    "befolkning": 36423
+  },
+  {
+    "stad": "Visby",
+    "landskap": "Gotland",
+    "lan": "Gotlands län",
+    "latitud": 57.64,
+    "kust_inland": "Kust",
+    "grundad": 1000,
+    "befolkning": 26305
+  },
+  {
+    "stad": "Kiruna",
+    "landskap": "Lappland",
+    "lan": "Norrbottens län",
+    "latitud": 67.85,
+    "kust_inland": "Inland",
+    "grundad": 1900,
+    "befolkning": 17284
   }
 ]
