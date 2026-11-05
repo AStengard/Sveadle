@@ -1,25 +1,13 @@
-# 🇸🇪 Stadsdle (Svenska Städer Loldle-klon)
+# 🇸🇪 Stadsdle v2 (30 Svenska Städer)
 
 Ett webbaserat gissningsspel för svenska städer byggt i Python och Streamlit – helt utan externa API-nycklar!
 
-## Filer i projektet
-- `app.py` – Själva spelet och gränssnittet i Streamlit.
-- `cities.json` – Databas med 10 svenska städer (enkelt att lägga till fler!).
-- `requirements.txt` – Python-paket som krävs för att köra appen på Streamlit Cloud.
+## Nyheter i v2
+- **30 svenska städer** med verifierad data (landskap, län, latitud, kust/inland, grundandeår och tätortsbefolkning).
+- **Dedikerad förstasida** med tydliga instruktioner där din första gissning låser upp själva spelplanen.
+- **Fritextsökning med smarta förslag:** Skriv valfria bokstäver (t.ex. `"al"`) för att direkt få klickbara förslag på alla städer som innehåller bokstäverna (Malmö, Halmstad, Kalmar, Falun).
+- **Tydlig vinstskärm:** Guldinramad vinstskylt med sammanfattande fakta och konfetti/ballonger när du gissar rätt.
 
 ## Så här hostar du gratis på GitHub & Streamlit Community Cloud
-
-1. **Skapa ett GitHub-repository:**
-   - Gå till [github.com](https://github.com) och skapa ett nytt repository (t.ex. `stadsdle`).
-   - Ladda upp filerna `app.py`, `cities.json`, `requirements.txt` och `README.md` direkt i repot.
-
-2. **Publicera på Streamlit Cloud:**
-   - Gå till [share.streamlit.io](https://share.streamlit.io/) och logga in med ditt GitHub-konto.
-   - Klicka på **"Create app"** (eller "New app").
-   - Välj ditt GitHub-repository (`stadsdle`), branch (`main`) och ange `app.py` som *Main file path*.
-   - Klicka på **"Deploy!"**. Inom någon minut är din hemsida live!
-
-## Lägga till fler städer
-Öppna `cities.json` och lägg till nya objekt i listan enligt samma format:
-- `kust_inland`: `"Kust"` om staden ligger vid havet eller Vänern/Vättern/Mälaren, annars `"Inland"`.
-- `latitud`: Breddgad i decimalform (t.ex. `59.33`).
+1. Ladda upp `app.py`, `cities.json`, `requirements.txt` och `README.md` till ditt GitHub-repository.
+2. Gå till [share.streamlit.io](https://share.streamlit.io/) och koppla ditt repo med `app.py` som *Main file path*.
