@@ -2,10 +2,10 @@ import streamlit as st
 import json
 import random
 from datetime import date
+from streamlit_searchbox import st_searchbox
 
-st.set_page_config(page_title="Stadsdle - Gissa svenska staden", page_icon="🇸🇪", layout="wide")
+st.set_page_config(page_title="Sveadle - Gissa svenska staden", page_icon="🇸🇪", layout="wide")
 
-@st.cache_data
 def load_cities():
     with open("cities.json", "r", encoding="utf-8") as f:
         return json.load(f)
@@ -14,7 +14,7 @@ cities = load_cities()
 city_dict = {c["stad"]: c for c in cities}
 city_names = sorted(list(city_dict.keys()))
 
-# CSS för förstasida, Loldle-rutnät och vinstkort
+# CSS för Sveadle, Loldle-rutnät, vinstkort och sidfot
 st.markdown("""
 <style>
 .hero-box {
@@ -27,9 +27,10 @@ st.markdown("""
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 .hero-title {
-    font-size: 2.6rem;
+    font-size: 2.8rem;
     font-weight: 800;
     margin-bottom: 8px;
+    letter-spacing: 0.5px;
 }
 .hero-sub {
     font-size: 1.15rem;
@@ -104,6 +105,19 @@ st.markdown("""
     border-radius: 8px;
     margin-top: 10px;
 }
+.creator-badge {
+    text-align: center;
+    margin-top: 48px;
+    padding: 14px;
+    font-size: 0.88rem;
+    color: #90a4ae;
+    border-top: 1px solid rgba(144, 164, 174, 0.2);
+    letter-spacing: 0.4px;
+}
+.creator-badge span {
+    font-weight: 600;
+    color: #cfd8dc;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -114,8 +128,6 @@ if "practice_guesses" not in st.session_state:
     st.session_state.practice_guesses = []
 if "practice_target" not in st.session_state:
     st.session_state.practice_target = random.choice(cities)["stad"]
-if "search_query" not in st.session_state:
-    st.session_state.search_query = ""
 
 # Toppnavigering för spelläge
 col_mode, col_reset = st.columns([3, 1])
@@ -135,49 +147,38 @@ else:
         if st.button("🔄 Slumpa ny stad", use_container_width=True):
             st.session_state.practice_target = random.choice(cities)["stad"]
             st.session_state.practice_guesses = []
-            st.session_state.search_query = ""
             st.rerun()
 
 target = city_dict[target_name]
 won = target_name in guesses
-
-def make_guess(city_name):
-    if city_name not in guesses:
-        guesses.append(city_name)
-    st.session_state.search_query = ""
-
-def render_search_box(available_choices, placeholder_text="Skriv in en stad (t.ex. 'al' för Malmö, Halmstad, Kalmar)..."):
-    query = st.text_input(
-        "🔍 Sök och gissa stad:",
-        value=st.session_state.search_query,
-        placeholder=placeholder_text,
-        key=f"input_{len(guesses)}_{mode}"
-    )
-    if query.strip():
-        q_low = query.strip().lower()
-        # Sortera så att städer som börjar på söksträngen kommer först, därefter alla som innehåller söksträngen
-        starts = [c for c in available_choices if c.lower().startswith(q_low)]
-        contains = [c for c in available_choices if q_low in c.lower() and c not in starts]
-        matches = starts + contains
-
-        if matches:
-            st.caption("Klicka på en stad nedan för att gissa:")
-            cols = st.columns(min(len(matches), 4))
-            for idx, m_city in enumerate(matches[:8]):
-                with cols[idx % 4]:
-                    if st.button(f"📍 {m_city}", key=f"btn_{m_city}_{len(guesses)}", use_container_width=True):
-                        make_guess(m_city)
-                        st.rerun()
-        else:
-            st.warning("Inga kvarvarande städer matchar din sökning.")
-
 available_choices = [c for c in city_names if c not in guesses]
+
+# Google-liknande sökfunktion med piltangentsval (typeahead)
+def search_cities(searchterm: str):
+    if not searchterm or not searchterm.strip():
+        return []
+    q = searchterm.strip().lower()
+    starts = [c for c in available_choices if c.lower().startswith(q)]
+    contains = [c for c in available_choices if q in c.lower() and c not in starts]
+    return starts + contains
+
+def render_autocomplete_input(placeholder_text="Skriv en stad (använd ⬇️/⬆️ och Enter för att välja)..."):
+    selected = st_searchbox(
+        search_cities,
+        placeholder=placeholder_text,
+        label="🔍 Gissa på en svensk stad:",
+        clear_on_submit=True,
+        key=f"sveadle_searchbox_{mode}_{len(guesses)}"
+    )
+    if selected and selected in available_choices:
+        guesses.append(selected)
+        st.rerun()
 
 # FÖRSTASIDA (visas innan första gissningen är gjord)
 if len(guesses) == 0:
     st.markdown("""
     <div class="hero-box">
-        <div class="hero-title">🇸🇪 Välkommen till Stadsdle!</div>
+        <div class="hero-title">🇸🇪 Sveadle</div>
         <div class="hero-sub">Det dagliga gissningsspelet för svenska städer – inspirerat av Loldle och Wordle</div>
     </div>
     """, unsafe_allow_html=True)
@@ -185,8 +186,8 @@ if len(guesses) == 0:
     c1, c2 = st.columns([3, 2])
     with c1:
         st.subheader("🚀 Gör din första gissning för att starta spelet")
-        st.write("Börja skriva namnet på en svensk stad i rutan nedan. Förslag dyker upp automatiskt utifrån bokstäverna du skriver!")
-        render_search_box(available_choices)
+        st.write("Börja skriva namnet på en svensk stad i fältet nedan. Förslag dyker upp direkt i rullistan där du kan bläddra med piltangenterna (⬇️/⬆️) och trycka Enter!")
+        render_autocomplete_input()
 
     with c2:
         st.markdown("""
@@ -205,7 +206,7 @@ if len(guesses) == 0:
 
 # SPELPLAN (visas när minst 1 gissning är gjord)
 else:
-    st.title("🇸🇪 Stadsdle")
+    st.title("🇸🇪 Sveadle")
 
     if won:
         st.balloons()
@@ -213,7 +214,7 @@ else:
         <div class="victory-box">
             <div class="victory-title">🏆 SNYGGT JOBBAT! DU GISSADE RÄTT! 🎉</div>
             <div class="victory-city">📍 {target['stad']}</div>
-            <p style="font-size: 1.15rem; margin: 4px 0;">Du klarade det på <b>{len(guesses)}</b> {"försök" if len(guesses) > 1 else "försök"}!</p>
+            <p style="font-size: 1.15rem; margin: 4px 0;">Du klarade det på <b>{len(guesses)}</b> försök!</p>
             <div class="victory-stats">
                 <b>Landskap:</b> {target['landskap']} &nbsp;|&nbsp;
                 <b>Län:</b> {target['lan']} &nbsp;|&nbsp;
@@ -223,7 +224,7 @@ else:
         </div>
         """.replace(",", " "), unsafe_allow_html=True)
     else:
-        render_search_box(available_choices, placeholder_text="Skriv nästa stad (t.ex. 'al' för Malmö, Halmstad, Kalmar)...")
+        render_autocomplete_input(placeholder_text="Skriv nästa stad (använd ⬇️/⬆️ och Enter för att välja)...")
 
     # Hjälpfunktioner för jämförelse
     def compare_landskap(g_val, t_val):
@@ -290,3 +291,10 @@ else:
         - **Befolkning:** ⬆️ betyder att den hemliga staden har **fler invånare**, ⬇️ betyder **färre invånare**.
         """)
         st.caption("Städer i databasen: " + ", ".join(city_names))
+
+# Snygg sidfot som visas på alla sidor
+st.markdown("""
+<div class="creator-badge">
+    🇸🇪 <b>Sveadle</b> &nbsp;•&nbsp; Skapat av <span>Alfred Stengard</span>
+</div>
+""", unsafe_allow_html=True)
