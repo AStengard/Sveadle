@@ -289,7 +289,7 @@ else:
         """
         st.markdown(row_html, unsafe_allow_html=True)
 
-    with st.expander("ℹ️ Visa instruktioner & alla 30 städer i spelet"):
+    with st.expander("ℹ️ Visa instruktioner"):
         st.markdown("""
         - **Grön:** Exakt rätt!
         - **Gul:** Nära! (Delar ett av landskapen, ligger inom 1,5 breddgrader, grundades inom 100 år eller är inom 50 000 invånare).
