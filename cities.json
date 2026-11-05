@@ -1,0 +1,92 @@
+[
+  {
+    "stad": "Stockholm",
+    "landskap": "Uppland / Södermanland",
+    "lan": "Stockholms län",
+    "latitud": 59.33,
+    "kust_inland": "Kust",
+    "grundad": 1252,
+    "befolkning": 988000
+  },
+  {
+    "stad": "Göteborg",
+    "landskap": "Västergötland / Bohuslän",
+    "lan": "Västra Götalands län",
+    "latitud": 57.71,
+    "kust_inland": "Kust",
+    "grundad": 1621,
+    "befolkning": 604000
+  },
+  {
+    "stad": "Malmö",
+    "landskap": "Skåne",
+    "lan": "Skåne län",
+    "latitud": 55.6,
+    "kust_inland": "Kust",
+    "grundad": 1250,
+    "befolkning": 362000
+  },
+  {
+    "stad": "Uppsala",
+    "landskap": "Uppland",
+    "lan": "Uppsala län",
+    "latitud": 59.86,
+    "kust_inland": "Inland",
+    "grundad": 1286,
+    "befolkning": 174000
+  },
+  {
+    "stad": "Umeå",
+    "landskap": "Västerbotten",
+    "lan": "Västerbottens län",
+    "latitud": 63.82,
+    "kust_inland": "Kust",
+    "grundad": 1622,
+    "befolkning": 94000
+  },
+  {
+    "stad": "Jönköping",
+    "landskap": "Småland",
+    "lan": "Jönköpings län",
+    "latitud": 57.78,
+    "kust_inland": "Kust",
+    "grundad": 1284,
+    "befolkning": 103000
+  },
+  {
+    "stad": "Örebro",
+    "landskap": "Närke",
+    "lan": "Örebro län",
+    "latitud": 59.27,
+    "kust_inland": "Inland",
+    "grundad": 1200,
+    "befolkning": 128000
+  },
+  {
+    "stad": "Kiruna",
+    "landskap": "Lappland",
+    "lan": "Norrbottens län",
+    "latitud": 67.85,
+    "kust_inland": "Inland",
+    "grundad": 1900,
+    "befolkning": 17000
+  },
+  {
+    "stad": "Visby",
+    "landskap": "Gotland",
+    "lan": "Gotlands län",
+    "latitud": 57.64,
+    "kust_inland": "Kust",
+    "grundad": 900,
+    "befolkning": 25000
+  },
+  {
+    "stad": "Karlstad",
+    "landskap": "Värmland",
+    "lan": "Värmlands län",
+    "latitud": 59.38,
+    "kust_inland": "Kust",
+    "grundad": 1584,
+    "befolkning": 69000
+  }
+]
