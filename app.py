@@ -1,10 +1,12 @@
 import streamlit as st
 import json
 import random
-from datetime import date
 from streamlit_searchbox import st_searchbox
 
-st.set_page_config(page_title="Sveadle - Gissa svenska staden", page_icon="🇸🇪", layout="wide")
+# Svensk flagga som SVG-ikon så att den alltid visas som en riktig flagga på webbläsarfliken (även i Windows/Chrome)
+SWEDISH_FLAG_ICON = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'><rect width='16' height='10' fill='%23006AA7'/><rect x='5' width='2' height='10' fill='%23FECC02'/><rect y='4' width='16' height='2' fill='%23FECC02'/></svg>"
+
+st.set_page_config(page_title="Sveadle - Gissa svenska staden", page_icon=SWEDISH_FLAG_ICON, layout="wide")
 
 def load_cities():
     with open("cities.json", "r", encoding="utf-8") as f:
@@ -14,27 +16,41 @@ cities = load_cities()
 city_dict = {c["stad"]: c for c in cities}
 city_names = sorted(list(city_dict.keys()))
 
-# CSS för Sveadle, Loldle-rutnät, vinstkort och sidfot
+# CSS för Sveadle, rutnät (6 kolumner), vinstkort och skapar-skyltar
 st.markdown("""
 <style>
 .hero-box {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    padding: 32px;
+    background: linear-gradient(135deg, #004b87 0%, #006aa7 60%, #1e88e5 100%);
+    padding: 36px 32px;
     border-radius: 16px;
     color: white;
     text-align: center;
     margin-bottom: 24px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    border-bottom: 4px solid #fecc02;
 }
 .hero-title {
-    font-size: 2.8rem;
+    font-size: 3rem;
     font-weight: 800;
     margin-bottom: 8px;
     letter-spacing: 0.5px;
 }
 .hero-sub {
-    font-size: 1.15rem;
-    opacity: 0.92;
+    font-size: 1.2rem;
+    opacity: 0.95;
+    margin-bottom: 18px;
+}
+.hero-author {
+    display: inline-block;
+    background: rgba(254, 204, 2, 0.18);
+    border: 1.5px solid #fecc02;
+    color: #fecc02;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 8px 22px;
+    border-radius: 999px;
+    letter-spacing: 0.4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 .info-card {
     background-color: #1e2530;
@@ -46,7 +62,7 @@ st.markdown("""
 }
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 10px;
     margin-bottom: 10px;
     text-align: center;
@@ -121,34 +137,21 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Session state initiering
-if "daily_guesses" not in st.session_state:
-    st.session_state.daily_guesses = []
-if "practice_guesses" not in st.session_state:
-    st.session_state.practice_guesses = []
-if "practice_target" not in st.session_state:
-    st.session_state.practice_target = random.choice(cities)["stad"]
+# Session state initiering (endast slumpade städer)
+if "guesses" not in st.session_state:
+    st.session_state.guesses = []
+if "target_city" not in st.session_state:
+    st.session_state.target_city = random.choice(cities)["stad"]
+if "game_id" not in st.session_state:
+    st.session_state.game_id = 0
 
-# Toppnavigering för spelläge
-col_mode, col_reset = st.columns([3, 1])
-with col_mode:
-    mode = st.radio("Spelläge:", ["Dagens stad", "Övningsläge (slumpad stad)"], horizontal=True)
+def reset_game():
+    st.session_state.target_city = random.choice(cities)["stad"]
+    st.session_state.guesses = []
+    st.session_state.game_id += 1
 
-if mode == "Dagens stad":
-    seed = int(date.today().strftime("%Y%m%d"))
-    rng = random.Random(seed)
-    target_name = rng.choice(cities)["stad"]
-    guesses = st.session_state.daily_guesses
-else:
-    target_name = st.session_state.practice_target
-    guesses = st.session_state.practice_guesses
-    with col_reset:
-        st.write("")
-        if st.button("🔄 Slumpa ny stad", use_container_width=True):
-            st.session_state.practice_target = random.choice(cities)["stad"]
-            st.session_state.practice_guesses = []
-            st.rerun()
-
+target_name = st.session_state.target_city
+guesses = st.session_state.guesses
 target = city_dict[target_name]
 won = target_name in guesses
 available_choices = [c for c in city_names if c not in guesses]
@@ -168,18 +171,19 @@ def render_autocomplete_input(placeholder_text="Skriv en stad (använd ⬇️/�
         placeholder=placeholder_text,
         label="🔍 Gissa på en svensk stad:",
         clear_on_submit=True,
-        key=f"sveadle_searchbox_{mode}_{len(guesses)}"
+        key=f"sveadle_searchbox_{st.session_state.game_id}_{len(guesses)}"
     )
     if selected and selected in available_choices:
         guesses.append(selected)
         st.rerun()
 
-# FÖRSTASIDA (visas innan första gissningen är gjord)
+# FÖRSTASIDA (visas innan första gissningen är gjord, samt när man klickat på "Slumpa ny stad")
 if len(guesses) == 0:
     st.markdown("""
     <div class="hero-box">
         <div class="hero-title">🇸🇪 Sveadle</div>
-        <div class="hero-sub">Det dagliga gissningsspelet för svenska städer – inspirerat av Loldle och Wordle</div>
+        <div class="hero-sub">Gissningsspelet för svenska städer</div>
+        <div class="hero-author">✨ Skapat av Alfred Stengard</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -193,7 +197,7 @@ if len(guesses) == 0:
         st.markdown("""
         <div class="info-card">
             <h4>📖 Så här spelar du</h4>
-            <p>Skriv och välj valfri stad för att låsa upp spelplanen. Efter varje gissning får du ledtrådar i 6 kategorier:</p>
+            <p>Skriv och välj valfri stad för att låsa upp spelplanen. Efter varje gissning får du ledtrådar i 5 kategorier:</p>
             <ul>
                 <li>🟩 <b>Grön:</b> Exakt rätt!</li>
                 <li>🟨 <b>Gul:</b> Nära! (Delat landskap, inom 1,5° breddgrad, 100 år eller 50 000 invånare).</li>
@@ -206,7 +210,14 @@ if len(guesses) == 0:
 
 # SPELPLAN (visas när minst 1 gissning är gjord)
 else:
-    st.title("🇸🇪 Sveadle")
+    col_title, col_reset = st.columns([3, 1])
+    with col_title:
+        st.title("🇸🇪 Sveadle")
+    with col_reset:
+        st.write("")
+        if st.button("🔄 Slumpa ny stad", use_container_width=True):
+            reset_game()
+            st.rerun()
 
     if won:
         st.balloons()
@@ -217,7 +228,6 @@ else:
             <p style="font-size: 1.15rem; margin: 4px 0;">Du klarade det på <b>{len(guesses)}</b> försök!</p>
             <div class="victory-stats">
                 <b>Landskap:</b> {target['landskap']} &nbsp;|&nbsp;
-                <b>Län:</b> {target['lan']} &nbsp;|&nbsp;
                 <b>Grundad:</b> {target['grundad']} &nbsp;|&nbsp;
                 <b>Tätortsbefolkning (SCB):</b> {target['befolkning']:,} invånare
             </div>
@@ -244,7 +254,7 @@ else:
         arrow = up_label if t_val > g_val else down_label
         return color, arrow
 
-    headers = ["Stad", "Landskap", "Län", "Geografi (Lat)", "Kust / Inland", "Grundad", "Befolkning (Tätort)"]
+    headers = ["Stad", "Landskap", "Geografi (Lat)", "Kust / Inland", "Grundad", "Befolkning (Tätort)"]
     header_html = '<div class="grid-container">' + "".join(f'<div class="grid-header">{h}</div>' for h in headers) + '</div>'
     st.markdown(header_html, unsafe_allow_html=True)
 
@@ -252,7 +262,6 @@ else:
         g = city_dict[g_name]
 
         landskap_cls = compare_landskap(g["landskap"], target["landskap"])
-        lan_cls = "tile-green" if g["lan"] == target["lan"] else "tile-red"
         lat_cls, lat_arrow = compare_numeric(
             g["latitud"], target["latitud"], 1.5,
             up_label="⬆️ Norrut", down_label="⬇️ Söderut"
@@ -272,7 +281,6 @@ else:
         <div class="grid-container">
             <div class="tile tile-name">{g['stad']}</div>
             <div class="tile {landskap_cls}">{g['landskap']}</div>
-            <div class="tile {lan_cls}">{g['lan']}</div>
             <div class="tile {lat_cls}">{g['latitud']}° N<div class="arrow">{lat_arrow}</div></div>
             <div class="tile {kust_cls}">{g['kust_inland']}</div>
             <div class="tile {yr_cls}">{g['grundad']}<div class="arrow">{yr_arrow}</div></div>
