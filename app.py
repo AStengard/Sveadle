@@ -183,7 +183,7 @@ if len(guesses) == 0:
     <div class="hero-box">
         <div class="hero-title">🇸🇪 Sveadle</div>
         <div class="hero-sub">Gissningsspelet för svenska städer</div>
-        <div class="hero-author">✨ Skapat av Alfred Stengard</div>
+        <div class="hero-author"> Skapat av Alfred Stengard</div>
     </div>
     """, unsafe_allow_html=True)
 
