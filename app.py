@@ -299,7 +299,7 @@ else:
         - **Grundad:** ⬆️ betyder att den hemliga staden grundades **senare** (högre årtal), ⬇️ betyder **äldre** (lägre årtal).
         - **Befolkning (Tätort):** Enligt SCB:s officiella tätortsstatistik. ⬆️ betyder **fler invånare**, ⬇️ betyder **färre invånare**.
         """)
-        st.caption("Städer i databasen: " + ", ".join(city_names))
+        
 
 # Snygg sidfot som visas på alla sidor
 st.markdown("""
