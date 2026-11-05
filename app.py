@@ -205,7 +205,7 @@ if len(guesses) == 0:
                 <li>⬆️ / ⬇️ <b>Pilar:</b> Visar om den hemliga staden ligger längre <b>norrut/söderut</b>, är <b>äldre/senare</b> grundad eller har <b>fler/färre</b> invånare.</li>
             </ul>
             Gissa rätt stad för att vinna!
-            
+             
             <p style="margin-bottom:0; font-size:0.9rem; opacity:0.85;">💡 <b>Faktakällor:</b> Befolkning avser tätortens invånarantal enligt SCB. <b>Kust</b> avser städer vid havet (Östersjön, Kattegatt, Öresund, Bottniska viken), medan städer inne i landet (även vid insjöar som Vänern, Vättern och Mälaren) räknas som <b>Inland</b>.</p>
         </div>
         """, unsafe_allow_html=True)
