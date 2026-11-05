@@ -190,7 +190,7 @@ if len(guesses) == 0:
     c1, c2 = st.columns([3, 2])
     with c1:
         st.subheader("🚀 Gör din första gissning för att starta spelet")
-        st.write("Börja skriva namnet på en svensk stad i fältet nedan. Förslag dyker upp direkt i rullistan där du kan bläddra med piltangenterna (⬇️/⬆️) och trycka Enter!")
+        st.write("Börja skriva namnet på en svensk stad i fältet nedan!")
         render_autocomplete_input()
 
     with c2:
