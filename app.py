@@ -200,7 +200,7 @@ if len(guesses) == 0:
             <p>Skriv och välj valfri stad för att låsa upp spelplanen. Efter varje gissning får du ledtrådar i 5 kategorier:</p>
             <ul>
                 <li>🟩 <b>Grön:</b> Exakt rätt!</li>
-                <li>🟨 <b>Gul:</b> Nära! (Delat landskap, inom 1,5° breddgrad, 100 år eller 50 000 invånare).</li>
+                <li>🟨 <b>Gul:</b> Nära! (Delat landskap, inom 1,5° breddgrad, 100 år eller 25 000 invånare).</li>
                 <li>🟥 <b>Röd:</b> Fel.</li>
                 <li>⬆️ / ⬇️ <b>Pilar:</b> Visar om den hemliga staden ligger längre <b>norrut/söderut</b>, är <b>äldre/senare</b> grundad eller har <b>fler/färre</b> invånare.</li>
             </ul>
@@ -272,7 +272,7 @@ else:
             up_label="⬆️ Senare", down_label="⬇️ Äldre"
         )
         pop_cls, pop_arrow = compare_numeric(
-            g["befolkning"], target["befolkning"], 50000,
+            g["befolkning"], target["befolkning"], 25000,
             up_label="⬆️ Fler", down_label="⬇️ Färre"
         )
         pop_formatted = f"{g['befolkning']:,}".replace(",", " ")
@@ -292,7 +292,7 @@ else:
     with st.expander("ℹ️ Visa instruktioner"):
         st.markdown("""
         - **Grön:** Exakt rätt!
-        - **Gul:** Nära! (Delar ett av landskapen, ligger inom 1,5 breddgrader, grundades inom 100 år eller är inom 50 000 invånare).
+        - **Gul:** Nära! (Delar ett av landskapen, ligger inom 1,5 breddgrader, grundades inom 100 år eller är inom 25 000 invånare).
         - **Röd:** Fel.
         - **Kust / Inland:** Endast städer vid havskusten räknas som **Kust**. Städer vid insjöar (t.ex. Vänern, Vättern, Mälaren) räknas som **Inland**.
         - **Geografi:** ⬆️ betyder att den hemliga staden ligger **längre norrut**, ⬇️ betyder **längre söderut**.
