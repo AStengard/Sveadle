@@ -212,7 +212,7 @@ if len(guesses) == 0:
 else:
     col_title, col_reset = st.columns([3, 1])
     with col_title:
-        st.title("🇸🇪 Sveadle")
+        st.title("Sveadle")
     with col_reset:
         st.write("")
         if st.button("🔄 Slumpa ny stad", use_container_width=True):
