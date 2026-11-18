@@ -32,6 +32,115 @@ const EMBEDDED_CITIES = [
   { "stad": "Kiruna", "landskap": "Lappland", "latitud": 67.85, "kust_inland": "Inland", "grundad": 1900, "befolkning": 17284 }
 ];
 
+// Översättningar (Svenska är standard)
+const TRANSLATIONS = {
+  sv: {
+    pageTitle: "Sveadle - Gissa svenska staden",
+    heroTitle: "Sveadle",
+    heroSub: "Gissningsspelet för svenska städer",
+    createdBy: "Skapat av Alfred Stengard",
+    footerText: "🇸🇪 <b>Sveadle</b> &nbsp;•&nbsp; Skapat av <span>Alfred Stengard</span>",
+    startHeading: "🚀 Gör din första gissning för att starta spelet",
+    startSubtext: "Börja skriva namnet på en svensk stad i fältet nedan!",
+    searchLabel: "🔍 Gissa på en svensk stad:",
+    searchPlaceholder: "Skriv en stad (använd ⬇️/⬆️ och Enter för att välja)...",
+    noCitiesFound: "Inga städer hittades",
+    howToPlayTitle: "📖 Så här spelar du",
+    howToPlayIntro: "Skriv och välj valfri stad för att låsa upp spelplanen. Efter varje gissning får du ledtrådar i 5 kategorier:",
+    clueGreen: "🟩 <b>Grön:</b> Exakt rätt!",
+    clueYellow: "🟨 <b>Gul:</b> Nära! (Delat landskap, inom 1,5° breddgrad, 100 år eller 25 000 invånare).",
+    clueRed: "🟥 <b>Röd:</b> Fel.",
+    clueArrows: "⬆️ / ⬇️ <b>Pilar:</b> Visar om den hemliga staden ligger längre <b>norrut/söderut</b>, är <b>äldre/senare</b> grundad eller har <b>fler/färre</b> invånare.",
+    clueGoal: "Gissa rätt stad för att vinna!",
+    factsNote: "💡 <b>Faktakällor:</b> Befolkning avser tätortens invånarantal enligt SCB. <b>Kust</b> avser städer vid havet (Östersjön, Kattegatt, Öresund, Bottniska viken), medan städer inne i landet (även vid insjöar som Vänern, Vättern och Mälaren) räknas som <b>Inland</b>.",
+    randomCityBtn: "🔄 Slumpa ny stad",
+    victoryTitle: "🏆 SNYGGT JOBBAT! DU GISSADE RÄTT! 🎉",
+    victoryAttempts: (n) => `Du klarade det på <b>${n}</b> ${n === 1 ? 'försök' : 'försök'}!`,
+    statProvince: "Landskap:",
+    statFounded: "Grundad:",
+    statPop: "Tätortsbefolkning (SCB):",
+    residents: "invånare",
+    shareBtn: "📋 Dela resultat",
+    playAgainBtn: "🔄 Spela igen",
+    gridHeaders: ["Stad", "Landskap", "Geografi (Lat)", "Kust / Inland", "Grundad", "Befolkning (Tätort)"],
+    arrowNorth: "⬆️ Norrut",
+    arrowSouth: "⬇️ Söderut",
+    arrowLater: "⬆️ Senare",
+    arrowEarlier: "⬇️ Äldre",
+    arrowMore: "⬆️ Fler",
+    arrowFewer: "⬇️ Färre",
+    coastal: "Kust",
+    inland: "Inland",
+    showInstructions: "ℹ️ Visa instruktioner",
+    instructionsItems: [
+      "<b>Grön:</b> Exakt rätt!",
+      "<b>Gul:</b> Nära! (Delar ett av landskapen, ligger inom 1,5 breddgrader, grundades inom 100 år eller är inom 25 000 invånare).",
+      "<b>Röd:</b> Fel.",
+      "<b>Kust / Inland:</b> Endast städer vid havskusten räknas som <b>Kust</b>. Städer vid insjöar (t.ex. Vänern, Vättern, Mälaren) räknas som <b>Inland</b>.",
+      "<b>Geografi:</b> ⬆️ betyder att den hemliga staden ligger <b>längre norrut</b>, ⬇️ betyder <b>längre söderut</b>.",
+      "<b>Grundad:</b> ⬆️ betyder att den hemliga staden grundades <b>senare</b> (högre årtal), ⬇️ betyder <b>äldre</b> (lägre årtal).",
+      "<b>Befolkning (Tätort):</b> Enligt SCB:s officiella tätortsstatistik. ⬆️ betyder <b>fler invånare</b>, ⬇️ betyder <b>färre invånare</b>."
+    ],
+    shareTextHeader: (n) => `🇸🇪 Sveadle (${n} gissningar)`,
+    shareTextFooter: "Spela Sveadle på GitHub Pages!",
+    toastCopied: "Resultatet har kopierats till urklipp! 📋",
+    toastFail: "Kunde inte kopiera automatiskt."
+  },
+  en: {
+    pageTitle: "Sveadle - Guess the Swedish City",
+    heroTitle: "Sveadle",
+    heroSub: "The Swedish City Guessing Game",
+    createdBy: "Created by Alfred Stengard",
+    footerText: "🇸🇪 <b>Sveadle</b> &nbsp;•&nbsp; Created by <span>Alfred Stengard</span>",
+    startHeading: "🚀 Make your first guess to start the game",
+    startSubtext: "Start typing the name of a Swedish city in the box below!",
+    searchLabel: "🔍 Guess a Swedish city:",
+    searchPlaceholder: "Type a city (use ⬇️/⬆️ and Enter to choose)...",
+    noCitiesFound: "No cities found",
+    howToPlayTitle: "📖 How to play",
+    howToPlayIntro: "Type and select any city to unlock the game board. After each guess, you receive clues across 5 categories:",
+    clueGreen: "🟩 <b>Green:</b> Exactly right!",
+    clueYellow: "🟨 <b>Yellow:</b> Close! (Shared province, within 1.5° latitude, 100 years, or 25,000 residents).",
+    clueRed: "🟥 <b>Red:</b> Incorrect.",
+    clueArrows: "⬆️ / ⬇️ <b>Arrows:</b> Show whether the mystery city lies further <b>north/south</b>, was founded <b>earlier/later</b>, or has <b>more/fewer</b> residents.",
+    clueGoal: "Guess the correct city to win!",
+    factsNote: "💡 <b>Data sources:</b> Population refers to urban area (tätort) population according to Statistics Sweden (SCB). <b>Coast</b> refers to cities on the open sea (Baltic Sea, Kattegat, Öresund, Gulf of Bothnia), whereas inland cities (including major lakes like Vänern, Vättern, and Mälaren) are classified as <b>Inland</b>.",
+    randomCityBtn: "🔄 Random new city",
+    victoryTitle: "🏆 WELL DONE! YOU GUESSED IT! 🎉",
+    victoryAttempts: (n) => `You solved it in <b>${n}</b> ${n === 1 ? 'guess' : 'guesses'}!`,
+    statProvince: "Province:",
+    statFounded: "Founded:",
+    statPop: "Urban Population (SCB):",
+    residents: "residents",
+    shareBtn: "📋 Share result",
+    playAgainBtn: "🔄 Play again",
+    gridHeaders: ["City", "Province", "Geography (Lat)", "Coast / Inland", "Founded", "Population (Urban)"],
+    arrowNorth: "⬆️ North",
+    arrowSouth: "⬇️ South",
+    arrowLater: "⬆️ Later",
+    arrowEarlier: "⬇️ Earlier",
+    arrowMore: "⬆️ More",
+    arrowFewer: "⬇️ Fewer",
+    coastal: "Coast",
+    inland: "Inland",
+    showInstructions: "ℹ️ Show instructions",
+    instructionsItems: [
+      "<b>Green:</b> Exactly right!",
+      "<b>Yellow:</b> Close! (Shares one of the provinces, within 1.5 degrees of latitude, founded within 100 years, or within 25,000 residents).",
+      "<b>Red:</b> Incorrect.",
+      "<b>Coast / Inland:</b> Only cities on the sea coast count as <b>Coast</b>. Cities on inland lakes (e.g., Vänern, Vättern, Mälaren) count as <b>Inland</b>.",
+      "<b>Geography:</b> ⬆️ means the secret city lies <b>further north</b>, ⬇️ means <b>further south</b>.",
+      "<b>Founded:</b> ⬆️ means the secret city was founded <b>later</b> (higher year), ⬇️ means <b>earlier</b> (lower year).",
+      "<b>Population (Urban):</b> According to official SCB locality statistics. ⬆️ means <b>more residents</b>, ⬇️ means <b>fewer residents</b>."
+    ],
+    shareTextHeader: (n) => `🇸🇪 Sveadle (${n} ${n === 1 ? 'guess' : 'guesses'})`,
+    shareTextFooter: "Play Sveadle on GitHub Pages!",
+    toastCopied: "Result copied to clipboard! 📋",
+    toastFail: "Could not copy automatically."
+  }
+};
+
+let currentLang = localStorage.getItem("sveadle_lang") || "sv";
 let cities = EMBEDDED_CITIES;
 let cityDict = {};
 let cityNames = [];
@@ -39,6 +148,33 @@ let targetCity = null;
 let guesses = [];
 let hasWon = false;
 let selectedDropdownIndex = -1;
+
+function getT() {
+  return TRANSLATIONS[currentLang] || TRANSLATIONS.sv;
+}
+
+function setLanguage(lang) {
+  if (lang !== "sv" && lang !== "en") return;
+  currentLang = lang;
+  localStorage.setItem("sveadle_lang", lang);
+
+  document.documentElement.lang = currentLang;
+  const t = getT();
+  document.title = t.pageTitle;
+  
+  const footerBadge = document.getElementById("footerBadge");
+  if (footerBadge) {
+    footerBadge.innerHTML = t.footerText;
+  }
+
+  // Uppdatera knappar
+  const btnSv = document.getElementById("langSv");
+  const btnEn = document.getElementById("langEn");
+  if (btnSv) btnSv.classList.toggle("active", currentLang === "sv");
+  if (btnEn) btnEn.classList.toggle("active", currentLang === "en");
+
+  renderApp();
+}
 
 // Försök läsa in från cities.json om webbserver finns
 fetch("cities.json")
@@ -93,10 +229,13 @@ function compareNumeric(gVal, tVal, yellowThreshold, upLabel, downLabel) {
 }
 
 function formatNumber(num) {
+  if (currentLang === "en") {
+    return num.toLocaleString("en-US");
+  }
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-// Sökfunktion
+// Sökfunktion (utan landskap)
 function searchCities(searchTerm) {
   if (!searchTerm || !searchTerm.trim()) return [];
   const q = searchTerm.trim().toLowerCase();
@@ -123,13 +262,11 @@ function makeGuess(cityName) {
 // Konfetti vid vinst
 function triggerConfetti() {
   if (typeof confetti === "function") {
-    // Första stöt
     confetti({
       particleCount: 100,
       spread: 70,
       origin: { y: 0.6 }
     });
-    // Extra regn
     setTimeout(() => {
       confetti({
         particleCount: 50,
@@ -150,8 +287,9 @@ function triggerConfetti() {
 // Kopiera resultat som emojis till urklipp
 function shareResult() {
   if (!hasWon) return;
+  const t = getT();
 
-  let text = `🇸🇪 Sveadle (${guesses.length} gissningar)\n\n`;
+  let text = `${t.shareTextHeader(guesses.length)}\n\n`;
   for (const gName of guesses) {
     const g = cityDict[gName];
     const landColor = compareLandskap(g.landskap, targetCity.landskap);
@@ -163,12 +301,12 @@ function shareResult() {
     const mapColor = c => c === "tile-green" ? "🟩" : c === "tile-yellow" ? "🟨" : "🟥";
     text += `${mapColor(landColor)}${mapColor(latColor)}${mapColor(kustColor)}${mapColor(yrColor)}${mapColor(popColor)}\n`;
   }
-  text += "\nSpela Sveadle på GitHub Pages!";
+  text += `\n${t.shareTextFooter}`;
 
   navigator.clipboard.writeText(text).then(() => {
-    showToast("Resultatet har kopierats till urklipp! 📋");
+    showToast(t.toastCopied);
   }).catch(() => {
-    showToast("Kunde inte kopiera automatiskt.");
+    showToast(t.toastFail);
   });
 }
 
@@ -191,35 +329,43 @@ function showToast(msg) {
 function renderApp(animateLatest = false) {
   const app = document.getElementById("app");
   if (!app) return;
+  const t = getT();
+
+  // Uppdatera sidtitel och footer om de inte redan är synkade
+  document.title = t.pageTitle;
+  const footerBadge = document.getElementById("footerBadge");
+  if (footerBadge) {
+    footerBadge.innerHTML = t.footerText;
+  }
 
   if (guesses.length === 0) {
     // VÄLKOMSTSKÄRM
     app.innerHTML = `
       <div class="hero-box">
-        <div class="hero-title">Sveadle</div>
-        <div class="hero-sub">Gissningsspelet för svenska städer</div>
-        <div class="hero-author">Skapat av Alfred Stengard</div>
+        <div class="hero-title">${t.heroTitle}</div>
+        <div class="hero-sub">${t.heroSub}</div>
+        <div class="hero-author">${t.createdBy}</div>
       </div>
 
       <div class="start-layout">
         <div class="start-input-card">
-          <h3>🚀 Gör din första gissning för att starta spelet</h3>
-          <p>Börja skriva namnet på en svensk stad i fältet nedan!</p>
+          <h3>${t.startHeading}</h3>
+          <p>${t.startSubtext}</p>
           <div class="search-container" id="searchContainer"></div>
         </div>
 
         <div class="info-card">
-          <h4>📖 Så här spelar du</h4>
-          <p>Skriv och välj valfri stad för att låsa upp spelplanen. Efter varje gissning får du ledtrådar i 5 kategorier:</p>
+          <h4>${t.howToPlayTitle}</h4>
+          <p>${t.howToPlayIntro}</p>
           <ul>
-            <li>🟩 <b>Grön:</b> Exakt rätt!</li>
-            <li>🟨 <b>Gul:</b> Nära! (Delat landskap, inom 1,5° breddgrad, 100 år eller 25 000 invånare).</li>
-            <li>🟥 <b>Röd:</b> Fel.</li>
-            <li>⬆️ / ⬇️ <b>Pilar:</b> Visar om den hemliga staden ligger längre <b>norrut/söderut</b>, är <b>äldre/senare</b> grundad eller har <b>fler/färre</b> invånare.</li>
+            <li>${t.clueGreen}</li>
+            <li>${t.clueYellow}</li>
+            <li>${t.clueRed}</li>
+            <li>${t.clueArrows}</li>
           </ul>
-          Gissa rätt stad för att vinna!
+          ${t.clueGoal}
           <div class="facts-note">
-            💡 <b>Faktakällor:</b> Befolkning avser tätortens invånarantal enligt SCB. <b>Kust</b> avser städer vid havet (Östersjön, Kattegatt, Öresund, Bottniska viken), medan städer inne i landet (även vid insjöar som Vänern, Vättern och Mälaren) räknas som <b>Inland</b>.
+            ${t.factsNote}
           </div>
         </div>
       </div>
@@ -229,19 +375,20 @@ function renderApp(animateLatest = false) {
     // SPELPLAN
     let victoryHtml = "";
     if (hasWon) {
+      const targetCoastInlandText = targetCity.kust_inland === "Kust" ? t.coastal : t.inland;
       victoryHtml = `
         <div class="victory-box">
-          <div class="victory-title">🏆 SNYGGT JOBBAT! DU GISSADE RÄTT! 🎉</div>
+          <div class="victory-title">${t.victoryTitle}</div>
           <div class="victory-city">📍 ${targetCity.stad}</div>
-          <p style="font-size: 1.15rem; margin: 4px 0;">Du klarade det på <b>${guesses.length}</b> ${guesses.length === 1 ? 'försök' : 'försök'}!</p>
+          <p style="font-size: 1.15rem; margin: 4px 0;">${t.victoryAttempts(guesses.length)}</p>
           <div class="victory-stats">
-            <b>Landskap:</b> ${targetCity.landskap} &nbsp;|&nbsp;
-            <b>Grundad:</b> ${targetCity.grundad} &nbsp;|&nbsp;
-            <b>Tätortsbefolkning (SCB):</b> ${formatNumber(targetCity.befolkning)} invånare
+            <b>${t.statProvince}</b> ${targetCity.landskap} &nbsp;|&nbsp;
+            <b>${t.statFounded}</b> ${targetCity.grundad} &nbsp;|&nbsp;
+            <b>${t.statPop}</b> ${formatNumber(targetCity.befolkning)} ${t.residents}
           </div>
           <div class="victory-actions">
-            <button class="btn-share" id="btnShare">📋 Dela resultat</button>
-            <button class="btn-play-again" id="btnPlayAgain">🔄 Spela igen</button>
+            <button class="btn-share" id="btnShare">${t.shareBtn}</button>
+            <button class="btn-play-again" id="btnPlayAgain">${t.playAgainBtn}</button>
           </div>
         </div>
       `;
@@ -256,10 +403,11 @@ function renderApp(animateLatest = false) {
       const flipClass = isLatest ? "tile-flip" : "";
 
       const landClass = compareLandskap(g.landskap, targetCity.landskap);
-      const latRes = compareNumeric(g.latitud, targetCity.latitud, 1.5, "⬆️ Norrut", "⬇️ Söderut");
+      const latRes = compareNumeric(g.latitud, targetCity.latitud, 1.5, t.arrowNorth, t.arrowSouth);
       const kustClass = g.kust_inland === targetCity.kust_inland ? "tile-green" : "tile-red";
-      const yrRes = compareNumeric(g.grundad, targetCity.grundad, 100, "⬆️ Senare", "⬇️ Äldre");
-      const popRes = compareNumeric(g.befolkning, targetCity.befolkning, 25000, "⬆️ Fler", "⬇️ Färre");
+      const yrRes = compareNumeric(g.grundad, targetCity.grundad, 100, t.arrowLater, t.arrowEarlier);
+      const popRes = compareNumeric(g.befolkning, targetCity.befolkning, 25000, t.arrowMore, t.arrowFewer);
+      const coastInlandDisplay = g.kust_inland === "Kust" ? t.coastal : t.inland;
 
       rowsHtml += `
         <div class="grid-container">
@@ -269,7 +417,7 @@ function renderApp(animateLatest = false) {
             ${g.latitud}° N
             <div class="arrow">${latRes.arrow}</div>
           </div>
-          <div class="tile ${kustClass} ${flipClass}">${g.kust_inland}</div>
+          <div class="tile ${kustClass} ${flipClass}">${coastInlandDisplay}</div>
           <div class="tile ${yrRes.color} ${flipClass}">
             ${g.grundad}
             <div class="arrow">${yrRes.arrow}</div>
@@ -282,10 +430,13 @@ function renderApp(animateLatest = false) {
       `;
     });
 
+    const headersHtml = t.gridHeaders.map(h => `<div class="grid-header">${h}</div>`).join("");
+    const instructionsListHtml = t.instructionsItems.map(item => `<li>${item}</li>`).join("");
+
     app.innerHTML = `
       <div class="game-header">
         <div class="game-title">🇸🇪 Sveadle</div>
-        <button class="btn-reset" id="btnReset">🔄 Slumpa ny stad</button>
+        <button class="btn-reset" id="btnReset">${t.randomCityBtn}</button>
       </div>
 
       ${victoryHtml}
@@ -294,30 +445,19 @@ function renderApp(animateLatest = false) {
 
       <div class="grid-wrapper">
         <div class="grid-container">
-          <div class="grid-header">Stad</div>
-          <div class="grid-header">Landskap</div>
-          <div class="grid-header">Geografi (Lat)</div>
-          <div class="grid-header">Kust / Inland</div>
-          <div class="grid-header">Grundad</div>
-          <div class="grid-header">Befolkning (Tätort)</div>
+          ${headersHtml}
         </div>
         ${rowsHtml}
       </div>
 
       <div class="expander" id="instructionsExpander">
         <div class="expander-header" id="expanderToggle">
-          <span>ℹ️ Visa instruktioner</span>
+          <span>${t.showInstructions}</span>
           <span class="expander-arrow">▼</span>
         </div>
         <div class="expander-content">
           <ul style="padding-left: 20px;">
-            <li><b>Grön:</b> Exakt rätt!</li>
-            <li><b>Gul:</b> Nära! (Delar ett av landskapen, ligger inom 1,5 breddgrader, grundades inom 100 år eller är inom 25 000 invånare).</li>
-            <li><b>Röd:</b> Fel.</li>
-            <li><b>Kust / Inland:</b> Endast städer vid havskusten räknas som <b>Kust</b>. Städer vid insjöar (t.ex. Vänern, Vättern, Mälaren) räknas som <b>Inland</b>.</li>
-            <li><b>Geografi:</b> ⬆️ betyder att den hemliga staden ligger <b>längre norrut</b>, ⬇️ betyder <b>längre söderut</b>.</li>
-            <li><b>Grundad:</b> ⬆️ betyder att den hemliga staden grundades <b>senare</b> (högre årtal), ⬇️ betyder <b>äldre</b> (lägre årtal).</li>
-            <li><b>Befolkning (Tätort):</b> Enligt SCB:s officiella tätortsstatistik. ⬆️ betyder <b>fler invånare</b>, ⬇️ betyder <b>färre invånare</b>.</li>
+            ${instructionsListHtml}
           </ul>
         </div>
       </div>
@@ -342,15 +482,16 @@ function renderApp(animateLatest = false) {
 function setupSearchInput(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
+  const t = getT();
 
   container.innerHTML = `
-    <label class="search-label" for="cityInput">🔍 Gissa på en svensk stad:</label>
+    <label class="search-label" for="cityInput">${t.searchLabel}</label>
     <div class="search-input-wrapper">
       <input 
         type="text" 
         id="cityInput" 
         class="search-input" 
-        placeholder="Skriv en stad (använd ⬇️/⬆️ och Enter för att välja)..." 
+        placeholder="${t.searchPlaceholder}" 
         autocomplete="off" 
       />
       <div id="searchDropdown" class="search-dropdown"></div>
@@ -373,7 +514,7 @@ function setupSearchInput(containerId) {
 
     currentResults = searchCities(query);
     if (currentResults.length === 0) {
-      dropdown.innerHTML = `<div class="dropdown-item" style="cursor: default; opacity: 0.6;">Inga städer hittades</div>`;
+      dropdown.innerHTML = `<div class="dropdown-item" style="cursor: default; opacity: 0.6;">${t.noCitiesFound}</div>`;
       dropdown.classList.add("active");
       selectedDropdownIndex = -1;
       return;
@@ -459,7 +600,24 @@ function setupSearchInput(containerId) {
   setTimeout(() => input.focus(), 50);
 }
 
+// Koppla språkväljarknappar
+function setupLanguageSwitcher() {
+  const btnSv = document.getElementById("langSv");
+  const btnEn = document.getElementById("langEn");
+
+  if (btnSv) {
+    btnSv.classList.toggle("active", currentLang === "sv");
+    btnSv.addEventListener("click", () => setLanguage("sv"));
+  }
+  if (btnEn) {
+    btnEn.classList.toggle("active", currentLang === "en");
+    btnEn.addEventListener("click", () => setLanguage("en"));
+  }
+}
+
 // Starta spelet när sidan laddats
 window.addEventListener("DOMContentLoaded", () => {
+  setupLanguageSwitcher();
+  document.documentElement.lang = currentLang;
   initData();
 });
